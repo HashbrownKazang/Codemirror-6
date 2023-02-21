@@ -1,0 +1,57 @@
+@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap");
+
+html, body {
+  height: 100%;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+.cm-editor {
+  height: 100vh;
+}
+
+.cm-scroller, .cm-gutter, .cm-tooltip.cm-tooltip-autocomplete {
+  font-family: "JetBrains Mono", monospace !important;
+  line-height: 1.9 !important;
+  font-size: 13px;
+}
+
+.cm-foldPlaceholder {
+  border: none !important;
+  border-radius: 5px !important;
+  padding: 0 6px !important;
+  margin: 0 3.5px !important;
+  font-family: "Hiragino Sans", sans-serif;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 10px;
+}
+
+#buttons {
+  position: fixed;
+  top: 10px;
+  right: 20px;
+  z-index: 10;
+}
+
+#buttons > * {
+  padding: 3px;
+  font-size: 20px;
+  background: #7878782a;
+  border-radius: 6px;
+  border: none;
+  margin-top: 10px;
+  cursor: pointer;
+  display: block;
+  transition: background-color 0.3s;
+}
+
+#buttons > *:hover {  
+  background: #7878784a;
+}
+
+#buttons ion-icon {
+  color: #5abb5a;
+  font-size: 25px;
+}

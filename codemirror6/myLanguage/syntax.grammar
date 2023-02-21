@@ -1,0 +1,57 @@
+@top Program { expression* }
+
+@skip { space | LineComment }
+
+expression {
+  Identifier |
+  Attribute |
+  Literal |
+  Operator |
+  Type |
+  Scope |
+  Declare |
+  Assignment | 
+  Keyword |
+  Punctuation |
+  Application { ApplicationStart expression* ApplicationEnd } // Used to group expressions for indenting & folding (see index.ts)
+}
+
+@tokens {
+  @precedence { LineComment, Keyword, ApplicationStart, ApplicationEnd, Punctuation, Declare, Scope, Type, Assignment, Literal, Operator, Attribute, Identifier }
+
+  LineComment { "<~~" ![\n]* } // The rest of the line after `<~~` is considered a LineComment
+
+  space { $[ \t\n\r]+ }
+
+  Identifier { $[a-zA-Z0-9_]+ }
+
+  Attribute { "#" Identifier }
+
+  Keyword { "if" | "altif" | "alt" | "switch" | "other" | "fun" | "meth" | "obj" | "extract" | "break" }
+
+  Scope { "pub" | "pri" }
+
+  String { ('"' (!["\\] | "\\" _)* '"') |  ("'" (!['\\] | "\\" _)* "'") }
+
+  Number { "-"* $[0-9]+ ("." $[0-9]+)? }
+
+  Boolean { "true" | "false" }
+
+  Literal { String | Number | Boolean }
+
+  Operator { "+" | "-" | "*" | "**" | "/" | "=" | ">" | "<" | "<=" ">=" }
+
+  Type { "dec" | "str" | "boo" | "arr" | "lst" | "hsh" }
+
+  Declare { "var" | "con" }
+
+  Assignment { "<-" | "<-<" | "-<" }
+
+  Punctuation { "|" | "," | "?->" | "<--" | "@" | ".." | "..." | ":" }
+
+  // These are used to define what an application is (line 16)
+  ApplicationStart { "(" | "{" | "[" | "==>" }
+  ApplicationEnd { ")" | "}" | "]" | "<==" }
+}
+
+@detectDelim

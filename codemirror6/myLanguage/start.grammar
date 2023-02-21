@@ -1,0 +1,21 @@
+@top Program { expression* }
+
+@skip { space  }
+
+expression {
+  Identifier
+  Application { ApplicationStart expression* ApplicationEnd }
+}
+
+@tokens {
+  @precedence {  }
+
+  space { $[ \t\n\r]+ }
+
+  Identifier { $[a-zA-Z0-9_]+ }
+
+  ApplicationStart { "(" | "{" | "[" }
+  ApplicationEnd { ")" | "}" | "]" }
+}
+
+@detectDelim
