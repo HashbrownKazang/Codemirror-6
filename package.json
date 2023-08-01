@@ -6,7 +6,7 @@
     "rollup": "rollup -c"
   },
   "dependencies": {
-    "@codemirror/autocomplete": "^0.19.15",
+    "@codemirror/autocomplete": "^0.20.3",
     "@codemirror/basic-setup": "^0.19.1",
     "@codemirror/commands": "^0.19.8",
     "@codemirror/gutter": "^0.19.9",
